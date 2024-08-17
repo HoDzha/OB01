@@ -15,10 +15,11 @@
 # Выбери один из созданных магазинов и протестируй все его методы: добавь товар, обнови цену, убери товар и запрашивай цену.
 # В поле для ответа загрузи ссылку на GitHub-репозиторий, содержащий код проекта с реализацией задания.
 class Store():
-    __init__(self, name, address):
+    def __init__(self, name, address):
         self.name = name # - имя магазина
         self.address = address # - адрес магазина
-        self.items = {} # - инизиализация пустого словаря для items
+        self.items = {}
+    # - инизиализация пустого словаря для items
 
 
     def add_item(self, name, price): # - метод добавления nовара в ассортимент
@@ -39,9 +40,33 @@ class Store():
         if name in self.items:
             self.items[name] = new_price
 
+    def print_price(self):
+        print(f"Магазин: {self.name}\nАдрес: {self.address}\nТовары:")
+        for name, price in self.items.items():
+            print(f"{name}: {price}")
+        print("\n")
+
 # создаем магазины
 
 walkmart = Store('Walkmart', 'На деревне у дедушки')
 LeroyMarlen = Store('Лерой Марлен', 'Baker street 221b')
 azyktuleк = Store('АзыкТулек', ' Beverly Hills, 90210')
 
+# добавляем товары
+
+walkmart.add_item('apple', 11.5)
+walkmart.add_item('banana', 2.75)
+LeroyMarlen.add_item('молоток', 1.51)
+LeroyMarlen.add_item('гвозди', 45.75)
+azyktuleк.add_item('Кумыс', 12.5)
+azyktuleк.add_item('Учпучмак', 3.2)
+
+LeroyMarlen.update_price('молоток', 11.01)
+azyktuleк.remove_item('Кумыс')
+
+
+
+# выводим цены
+walkmart.print_price()
+LeroyMarlen.print_price()
+azyktuleк.print_price()
